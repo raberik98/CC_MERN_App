@@ -8,6 +8,7 @@ const App = Express()
 
 App.use(Express.json())
 
+
 App.get("/api/v1/todos", async (req,res) => {
     try {
         //Find, for requesting multiple data from the database
@@ -28,7 +29,7 @@ App.get("/api/v1/todo/:id", async (req,res) => {
         res.json(data)
     } catch (error) {
         console.log(error);
-        res.json({message: "Unexpected error occured!"})
+        res.status(500).json({message: "Unexpected error occured!"})
     }
 })
 
@@ -116,6 +117,13 @@ App.delete("/api/v1/todo/:id", async (req,res) => {
         res.json({message: "Unexpected error occured!"})
     }
 })
+
+
+// App.use("/assets", Express.static(`/dist/assets`));
+
+// App.get("/*", (req, res, next) => {
+//     res.sendFile(path.join(`${__dirname}/dist/index.html`));
+// })
 
 
 Mongoose.connect(mongoConnString).then(() => {
