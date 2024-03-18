@@ -1,0 +1,43 @@
+###
+GET http://localhost:3000/api/v1/todos
+
+###
+GET http://localhost:3000/api/v1/todo/65f8158298c3fd0cf7ea68f5
+
+###
+POST http://localhost:3000/api/v1/todo
+Content-Type: application/json
+
+{
+    "title": "Finish this project",
+    "description": "Finish this project already"
+}
+
+
+###
+PATCH http://localhost:3000/api/v1/todo/65f8158298c3fd0cf7ea68f5
+Content-Type: application/json
+
+{
+    "title": "[Updated] Finish this project",
+    "description": "Finish this project already"
+}
+
+###
+PATCH http://localhost:3000/api/v1/todo/note/65f8158298c3fd0cf7ea68f5
+Content-Type: application/json
+
+{
+   "text": "All good man!"
+}
+
+###
+PATCH http://localhost:3000/api/v2/todo/note/65f8158298c3fd0cf7ea68f5
+Content-Type: application/json
+
+{
+   "text": "I used another method here!"
+}
+
+###
+DELETE  http://localhost:3000/api/v1/todo/65f81a20968792172ddf584c
