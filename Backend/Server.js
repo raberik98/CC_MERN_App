@@ -1,12 +1,20 @@
 import Express from "express"
 import Mongoose from "mongoose"
 import { mongoConnString } from "./env.js"
-
+import path from "path";
+import { fileURLToPath } from "url";
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
 import TodoModel from "./Models/Todo.model.js"
 
 const App = Express()
 
 App.use(Express.json())
+
+App.use("/",(req,res,next) => {
+    console.log(req.ip)
+    next()
+})
 
 
 App.get("/api/v1/todos", async (req,res) => {
@@ -119,11 +127,11 @@ App.delete("/api/v1/todo/:id", async (req,res) => {
 })
 
 
-// App.use("/assets", Express.static(`/dist/assets`));
+App.use("/assets", Express.static(`${__dirname}/dist/assets`));
 
-// App.get("/*", (req, res, next) => {
-//     res.sendFile(path.join(`${__dirname}/dist/index.html`));
-// })
+App.get("/*", (req, res, next) => {
+    res.sendFile(path.join(`${__dirname}/dist/index.html`));
+})
 
 
 Mongoose.connect(mongoConnString).then(() => {

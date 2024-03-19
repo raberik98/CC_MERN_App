@@ -5,13 +5,18 @@ import { BrowserRouter, Routes, Route } from "react-router-dom"
 import './index.css'
 
 import TodoList from './pages/TodoList'
-import TodoEditor from './pages/TodoEditor'
+import TodoCreator from './pages/TodoCreator'
+import TodoUpdater from './pages/TodoUpdater'
+import Layout from './pages/Layout'
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <BrowserRouter>
     <Routes>
-      <Route path='/' element=<TodoList/> />
-      <Route path='/editor/:id' element=<TodoEditor/> />
+      <Route path='/' element=<Layout/> >
+        <Route path='/' element=<TodoList/> />
+        <Route path='/create' element=<TodoCreator/> />
+        <Route path='/update/:id' element=<TodoUpdater/> />
+      </Route>
     </Routes>
   </BrowserRouter>
 )
